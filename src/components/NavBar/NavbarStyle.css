@@ -1,0 +1,16 @@
+.nav-item a {
+    font-size: 19px;
+    text-decoration: none;
+    color: black;
+}
+.nav-item a:hover {
+    opacity: 0.5;
+}
+
+.nav{
+    background-color: rgba(000, 0, 0, 0.2);
+}
+
+.home{
+    color: greenyellow!important;
+}
