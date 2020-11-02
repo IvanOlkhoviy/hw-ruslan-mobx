@@ -1,10 +1,12 @@
+import { inject, observer } from 'mobx-react';
 import {React, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import Store from "../../Store/Store.js"
+import { useHistory} from "react-router-dom";
 
 
 
-function Signup() {
+function Signup(props) {
+
+    const history =  useHistory();
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -17,9 +19,13 @@ function Signup() {
     }
 
     const handleSubmit = () =>{
-        // <Redirect to = "/" />
-        Store.createNewUser(login, password);
+        if(login !== "" && password !== ""){
+            let newId = props.Store.users.length;
+            props.Store.users.push({id: newId++, login, password});
+            alert("User has beenn created successfuly!")
+        history.push("/");
     }
+}
 
 
 
@@ -45,4 +51,4 @@ function Signup() {
     )
 }
 
-export default Signup;
+export default inject("Store")(observer(Signup));
